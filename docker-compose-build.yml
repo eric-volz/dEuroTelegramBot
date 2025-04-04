@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+
+  frankencoin-telegram-bot:
+      container_name: frankencoin-telegram-bot
+      build:
+        context: .
+        dockerfile: bot/Dockerfile
+      env_file:
+        - .env
+      command: python3 ./bot/app.py

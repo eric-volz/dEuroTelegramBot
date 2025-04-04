@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  frankencoin-telegram-bot:
+    container_name: frankencoin-telegram-bot
+    image: ghcr.io/eric-volz/frankencoin-telegram-bot:latest
+    restart: always
+    env_file:
+      - .env
+    command: python3 ./bot/app.py
+
+  watchtower:
+    container_name: frankencoin-telegram-bot-watchtower
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30 --cleanup
+    restart: always
